@@ -1,73 +1,24 @@
-# テーブル設計
+# README
 
-## users　テーブル
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-| Column              | Type    | Options     |
-| ------------------- | ------- | ----------- |
-| nickname            | string  | null: false |
-| email               | string  | null: false |
-| password            | string  | null: false |
-| first_name          | string  | null: false |
-| last_name           | string  | null: false |
-| first_katakana_name | string  | null: false |
-| last_katakana_name  | string  | null: false |
-| birthday            | integer | null: false |
+Things you may want to cover:
 
-### Association
+* Ruby version
 
-- has_many :products
-- has_many :buy
+* System dependencies
 
+* Configuration
 
-## products　テーブル
+* Database creation
 
-| Column              | Type         | Options     |
-| ------------------- | string       | null: false |
-| image               | activeStrage |             |
-| title               | string       | null: false |
-| user                | references   |             |
-| description         | string       | null: false |
-| category            | string       | null: false |
-| condition           | string       | null: false |
-| shipping_user       | string       | null: false |
-| shipping_area       | integer      | null: false |
-| days_ship           | integer      | null: false |
-| price               | integer      | null: false |
+* Database initialization
 
-### Association
+* How to run the test suite
 
-belongs_to :user
+* Services (job queues, cache servers, search engines, etc.)
 
-## buy　テーブル
+* Deployment instructions
 
-| Column              | Type       | Options     |
-| ------------------- | ---------- | ----------- |
-| product             | references |             |
-| user                | references |             |
-| card_number         | integer    | null: false |
-| expiration_date     | integer    | null: false |
-| security_code       | integer    | null: false |
-| postal_code         | integer    | null: false |
-| prefectures         | integer    | null: false |
-| city                | integer    | null: false |
-| address             | integer    | null: false |
-| building            | integer    | null: false |
-| phone_number        | integer    | null: false |
-
-### Association
-
-belongs_to :product
-belongs_to :user
-
-## comments　テーブル
-
-| Column              | Type       | Options     |
-| ------------------- | ---------- | ----------- |
-| comments            | string     | null: false |
-| product             | references |             |
-| user                | references |             |
-
-### Association
-
-belongs_to :product
-belongs_to :user
+* ...
