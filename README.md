@@ -37,7 +37,7 @@
 
 belongs_to :user
 has_one    :buy
-has_many :comments
+has_many :comments 
 
 ## buys　テーブル
 
@@ -50,9 +50,9 @@ has_many :comments
 
 belongs_to :product
 belongs_to :user
-has_one :shipping address
+has_one :shipping_address
 
-## shipping address テーブル
+## shipping_address テーブル
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
