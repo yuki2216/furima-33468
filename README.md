@@ -13,11 +13,11 @@
 | last_katakana_name  | string  | null: false               |
 | birthday            | date    | null: false               |
 
-### Association 
+### Association
 
 - has_many :products
 - has_many :buys
-
+- has_many :comments
 
 ## products　テーブル
 
@@ -37,6 +37,7 @@
 
 belongs_to :user
 has_one    :buy
+has_many :comments
 
 ## buys　テーブル
 
@@ -71,7 +72,7 @@ belongs_to :buy
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
-| comments         | string     | null: false       |
+| comments         | text       | null: false       |
 | product          | references | foreign_key: true |
 | user             | references | foreign_key: true |
 
