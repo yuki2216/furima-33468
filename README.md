@@ -13,7 +13,7 @@
 | last_katakana_name  | string  | null: false               |
 | birthday            | date    | null: false               |
 
-### Association
+### Association 
 
 - has_many :products
 - has_many :buys
