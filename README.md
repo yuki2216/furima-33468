@@ -2,24 +2,24 @@
 
 ## users　テーブル
 
-| Column              | Type    | Options                   |
-| ------------------- | ------- | -------------             |
-| nickname            | string  | null: false               |
-| email               | string  | null: false, unique: true |
-| encrypted_password  | string  | null: false               |
-| first_name          | string  | null: false               |
-| last_name           | string  | null: false               |
-| first_katakana_name | string  | null: false               |
-| last_katakana_name  | string  | null: false               |
-| birthday            | date    | null: false               |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 
-- has_many :products
+- has_many :items
 - has_many :buys
 - has_many :comments
 
-## products　テーブル
+## items テーブル
 
 | Column           | Type         | Options           |
 | ---------------- | ------------ | ----------------- |
@@ -39,16 +39,16 @@ belongs_to :user
 has_one    :buy
 has_many :comments 
 
-## buys　テーブル
+## buys テーブル
 
 | Column             | Type       | Options           |
 | ------------------ | ---------- | ----------------- |
-| product            | references | foreign_key: true |
+| item               | references | foreign_key: true |
 | user               | references | foreign_key: true |
 
 ### Association
 
-belongs_to :product
+belongs_to :item
 belongs_to :user
 has_one :shipping_address
 
@@ -73,10 +73,10 @@ belongs_to :buy
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
 | comments         | text       | null: false       |
-| product          | references | foreign_key: true |
+| item             | references | foreign_key: true |
 | user             | references | foreign_key: true |
 
 ### Association
 
-belongs_to :product
+belongs_to :item
 belongs_to :user
