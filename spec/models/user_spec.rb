@@ -57,29 +57,45 @@ RSpec.describe User, type: :model do
     end
   end
   describe '新規登録/本人情報確認' do
-    it "ユーザー本名は、名字と名前がそれぞれ必須であること" do
+    it "ユーザー本名は、名字がそれぞれ必須であること" do
       @user.last_name = ""
-      @user.first_name = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
-    it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+    it "ユーザー本名は、名前が必須であること" do
+      @user.first_name = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name can't be blank")
+    end
+    it "ユーザー本名の名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
       @user.last_name = "a"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+    end
+    it "ユーザー本名の名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
       @user.first_name = "a"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください", "First name 全角文字を使用してください")
+      expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
     end
-    it "ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること" do
+    it "ユーザー本名のフリガナは、名字が必須であること" do
       @user.last_name_kana = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+    end
+    it "ユーザー本名のフリガナは、名前が必須であること" do
       @user.first_name_kana = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana 全角カタカナのみで入力して下さい", "First name kana can't be blank", "First name kana 全角カタカナのみで入力して下さい")
+      expect(@user.errors.full_messages).to include("First name kana 全角カタカナのみで入力して下さい")
     end
-    it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+    it "ユーザー本名の名字のフリガナは、全角（カタカナ）での入力が必須であること" do
       @user.last_name_kana = "ﾔﾏﾀﾞ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana 全角カタカナのみで入力して下さい")
+    end
+    it "ユーザー本名の名前のフリガナは、全角（カタカナ）での入力が必須であること" do
       @user.first_name_kana = "ﾀﾛｳ"
       @user.valid?
-      expect(@user.errors.full_messages).to include()
+      expect(@user.errors.full_messages).to include("First name kana 全角カタカナのみで入力して下さい")
     end
     it "生年月日が必須であること" do
       @user.birthday = ""
