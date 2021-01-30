@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable 
 
-  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: '半角英数字を使用してください' }
+
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: '半角英数字を使用してください'
 
   with_options presence: true do
     validates :nickname
