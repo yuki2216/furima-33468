@@ -1,6 +1,6 @@
 # テーブル設計
 
-## users　テーブル
+## users　テーブル 
 
 | Column             | Type    | Options                   |
 | ------------------ | ------- | ------------------------- |
@@ -24,7 +24,6 @@
 | Column           | Type         | Options           |
 | ---------------- | ------------ | ----------------- |
 | title            | string       | null: false       |
-| user             | references   | foreign_key: true |
 | description      | text         | null: false       |
 | category_id      | integer      | null: false       |
 | condition_id     | integer      | null: false       |
@@ -32,7 +31,7 @@
 | shipping_area_id | integer      | null: false       |
 | shipping_day_id  | integer      | null: false       |
 | price            | integer      | null: false       |
-
+| user             | references   | foreign_key: true |
 ### Association
 
 belongs_to :user
