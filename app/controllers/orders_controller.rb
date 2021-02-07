@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, only: [:index]
+  before_action :authenticate_user!, only: [:index]
   def index
     @item_order =  ItemOrder.new
   end
@@ -36,13 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-    if current_user == @item.user
-      redirect_to root_path
-    end
-    if item.order == nil
+    if current_user == @item.user || item.order == nil
       redirect_to root_path
     end
   end
