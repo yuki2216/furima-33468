@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :orders
 - has_many :comments
 
 ## items テーブル
@@ -38,7 +38,7 @@ belongs_to :user
 has_one    :buy
 has_many :comments 
 
-## buys テーブル
+## orders テーブル
 
 | Column             | Type       | Options           |
 | ------------------ | ---------- | ----------------- |
@@ -49,15 +49,15 @@ has_many :comments
 
 belongs_to :item
 belongs_to :user
-has_one :shipping_address
+has_one :address
 
-## shipping_address テーブル
+## address テーブル
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
-| buy              | references | foreign_key: true |
+| order            | references | foreign_key: true |
 | postal_code      | string     | null: false       |
-| shipping_user_id | integer    | null: false       |
+| prefecture       | integer    | null: false       |
 | city             | string     | null: false       |
 | address          | string     | null: false       |
 | building         | string     |                   |
@@ -65,7 +65,7 @@ has_one :shipping_address
 
 ### Association
 
-belongs_to :buy
+belongs_to :order
 
 ## comments　テーブル
 
