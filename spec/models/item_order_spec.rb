@@ -34,14 +34,19 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
       end
       it '郵便番号にはハイフンが必要である' do
-        @item_order.postal_code = nil
+        @item_order.postal_code = 1110000
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it '都道府県は０以外でないと登録できない' do
-        @item_order.prefecture = 0 
+        @item_order.prefecture = 0
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Prefecture must be other than 0")
+      end
+      it '都道府県が空の場合、登録できない' do
+        @item_order.prefecture = nil
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
       end
       it '市区町村の情報が必須である' do
         @item_order.city = nil
